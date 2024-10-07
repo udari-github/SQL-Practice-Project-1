@@ -5,7 +5,7 @@ CREATE TABLE [dbo].[company](
 	[authority_level] [varchar](100) NULL
 )
 
-INSERT INTO [vehicle](employee_id,designation,designation_code,authority_level)
+INSERT INTO [company](employee_id,designation,designation_code,authority_level)
 values(1,'Deputy General Manager -North Western','DGM(NW)',1),
 (2,	'Deputy General Manager -Southern','DGM(S)',NULL),
 (3,	'Deputy General Manager -Western','DGM(W)',NULL),
