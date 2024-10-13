@@ -1,0 +1,21 @@
+--Let's find out from which products contributes 80% of the total sales.
+
+Use Sales_db;
+select * from shop;
+
+with percent_sales as(
+select name,
+	   sales,
+	   sum(sales) over(order by sales desc,product_id) as cumulative_sales,
+	   sum(sales) over(partition by (select null)) as total_sales,
+	   (sales/sum(sales) over(partition by (select null)))*100 as percent_sales
+from shop
+) ,
+cum_percent as(
+select *,
+		sum(percent_sales) over(order by percent_sales desc) as cumulative_percent
+from percent_sales
+)
+select name,sales,cumulative_percent from
+cum_percent 
+where cumulative_percent<=80
